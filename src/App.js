@@ -1,25 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Main from './layout/Main';
+// import { BrowserRouter as Router, Route, Link, Switch, useParams, NavLink } from 'react-router-dom';
+import moment from 'moment';
+import Index from './pages/Index'
+import ViewportContext from './component/ViewportContext'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 function App() {
+  // let day = new Date(2011, 9, 16);
+  // let dayWrapper = moment('2011-11-2').toDate();
+  // console.log(window.innerWidth);
+  // console.log(dayWrapper);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ViewportContext>
+        <Main />
+      </ViewportContext>
+    </>
   );
 }
-
 export default App;
