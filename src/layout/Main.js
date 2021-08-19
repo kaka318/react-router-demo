@@ -77,7 +77,7 @@ function SwitchRoute() {
     return (
         <Switch>
             {/* <Route exact path="/" component={Index} /> */}
-            <Route exact path="/" component={HomePage} />
+            <Route path="/home" component={HomePage} />
             <Route path="/page1" component={Page1} />
             <Route path="/page2" component={Page2} />
             <Route path="/:id" component={GetParams} />
