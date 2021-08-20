@@ -1,7 +1,7 @@
 export const routes = [
     {
         label: 'HOME PAGE',
-        path: '/home',
+        path: '/',
     },
     {
         label: 'PAGE1',

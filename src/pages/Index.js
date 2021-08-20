@@ -4,24 +4,20 @@ import Main from '../layout/Main';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 export default function Index() {
     return (
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center"}}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 750 }}>
             <div style={{ display: 'flex', justifyContent: "center" }}>
                 <div>
                     <img src="images/leftImg.jpg" width={420}></img>
                 </div>
-                <div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <LogginForm />
                 </div>
             </div>
         </div>
     )
 }
-const ComMain = () => {
-    return (
-        <ViewportContext>
-            <Main />
-        </ViewportContext>
-    )
+const BtnClick = () => {
+    window.location.reload();
 }
 const LogginForm = () => {
     const onFinish = (values) => {
@@ -44,7 +40,7 @@ const LogginForm = () => {
                 name="username"
                 rules={[{ required: true, message: 'Please input your username!' }]}
             >
-                <Input />
+                <Input placeholder='请输入用户名' />
             </Form.Item>
 
             <Form.Item
@@ -52,7 +48,7 @@ const LogginForm = () => {
                 name="password"
                 rules={[{ required: true, message: 'Please input your password!' }]}
             >
-                <Input.Password />
+                <Input.Password placeholder='请输入密码' />
             </Form.Item>
 
             <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
@@ -60,12 +56,12 @@ const LogginForm = () => {
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                <Button type="primary" htmlType="submit">
-                    <Router>
-                        <Link>submi</Link>
-                        <Route path='/nav' component={ComMain}></Route>
-                    </Router>
-                </Button>
+                <Router>
+                    <Button type="primary" htmlType="submit" onClick={BtnClick}>
+                        <Link to='/'>submit</Link>
+                    </Button>
+                </Router>
+
             </Form.Item>
         </Form>
     )
