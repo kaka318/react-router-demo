@@ -1,9 +1,9 @@
-import { Card, Layout } from 'antd'
+import { Card } from 'antd'
 import { aboutData } from '../data/page1';
 export default function Third() {
     const { Meta } = Card;
     return (
-        <div style={{ display: "flex",width:'100%', background: 'white', alignItems: "center", justifyContent: "center", width: '100%' }}>
+        <div style={{ display: "flex",width:'100%', background: 'white', alignItems: "center", justifyContent: "center"}}>
             <div style={{width:'70%'}}>
                 {aboutData.map((data, index) => (
                     <Card key={index}
@@ -17,6 +17,5 @@ export default function Third() {
 
             </div>
         </div>
-
     )
 }

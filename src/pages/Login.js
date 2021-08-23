@@ -1,8 +1,7 @@
 import { Input, Button, Checkbox, Form } from 'antd'
-import ViewportContext from '../component/ViewportContext'
-import Main from '../layout/Main';
+import { useState } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-export default function Index() {
+function Login() {
     return (
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: 750 }}>
             <div style={{ display: 'flex', justifyContent: "center" }}>
@@ -16,15 +15,31 @@ export default function Index() {
         </div>
     )
 }
-const BtnClick = () => {
-    window.location.reload();
-}
+
 const LogginForm = () => {
+    const [login,setLogin] = useState(false);
+    const [rule,setRule] = useState('Please input your username!');
     const onFinish = (values) => {
         console.log('Success:', values);
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
+    }
+    const BtnClick = () => {
+        let username = document.getElementById('username').value.toString();
+        let password = document.getElementById('password').value.toString();
+        if (username.match(/^\w{3,15}$/)) {
+            if(password.match(/^\w{6,15}$/)){
+                setLogin(true);
+            }else{
+                setRule('password must be 6 to 15 digits');
+            }
+        }else{
+            setRule('username must be 3 to 15 digits');
+        }
+        if(login){
+            window.location.reload();
+        }
     }
     return (
         <Form
@@ -38,17 +53,17 @@ const LogginForm = () => {
             <Form.Item
                 label="Username"
                 name="username"
-                rules={[{ required: true, message: 'Please input your username!' }]}
+                rules={[{ required: true, message: `${rule}` }]}
             >
-                <Input placeholder='请输入用户名' />
+                <Input id='username' placeholder='请输入用户名' />
             </Form.Item>
 
             <Form.Item
                 label="Password"
                 name="password"
-                rules={[{ required: true, message: 'Please input your password!' }]}
+                rules={[{ required: true, message: `${rule}` }]}
             >
-                <Input.Password placeholder='请输入密码' />
+                <Input.Password id='password' placeholder='请输入密码' />
             </Form.Item>
 
             <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
@@ -58,11 +73,14 @@ const LogginForm = () => {
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Router>
                     <Button type="primary" htmlType="submit" onClick={BtnClick}>
-                        <Link to='/'>submit</Link>
+                        {
+                            login === true ? <Link to='/'>submit</Link> : `submit`
+                        }
                     </Button>
-                </Router>
+                </Router>  
 
             </Form.Item>
         </Form>
     )
 }
+export default Login;
